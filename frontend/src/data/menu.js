@@ -1,0 +1,82 @@
+export const categories = [
+  { id: 1, name: "Pizza" },
+  { id: 2, name: "Tacos" },
+  { id: 3, name: "Panozzo" },
+  { id: 4, name: "Burgers" },
+  { id: 5, name: "Crêpes" },
+  { id: 6, name: "Boissons" },
+  { id: 7, name: "Desserts" },
+];
+
+export const dishes = [
+  {
+    id: 1,
+    name: "Pizza Peperoni",
+    description: "S.blanche, saucisse fumée, gruyère, mozza.",
+    category_id: 1,
+    image_url: "https://images.unsplash.com/photo-1628840042765-356cda07504e",
+    model_3d_url: null,
+    prices: [
+      { label: "Normal", price: 800 },
+      { label: "Méga", price: 2400 },
+    ],
+  },
+  {
+    id: 2,
+    name: "Tacos Poulet",
+    description: "Émincé de poulet mariné, frites maison, sauce fromagère.",
+    category_id: 2,
+    image_url: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47",
+    model_3d_url: "https://example.com/models/tacos.glb",
+    prices: [
+      { label: "M", price: 600 },
+      { label: "XL", price: 750 },
+    ],
+  },
+  {
+    id: 3,
+    name: "Panozzo Beef",
+    description: "Viande hachée sauce maison, camembert, gruyère, mozza.",
+    category_id: 3,
+    image_url: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+    model_3d_url: null,
+    prices: [{ label: "Unique", price: 700 }],
+  },
+  {
+    id: 4,
+    name: "Burger Classique",
+    description: "Viande hachée sauce maison, frites maison, ketchup.",
+    category_id: 4,
+    image_url: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+    model_3d_url: null,
+    prices: [{ label: "Unique", price: 650 }],
+  },
+  {
+    id: 5,
+    name: "Crêpe Nutella",
+    description:
+      "Délicieuses crêpes garnies de Nutella, servies avec des fruits frais et une touche de chantilly.",
+    category_id: 5,
+    image_url: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+    model_3d_url: null,
+    prices: [{ label: "Unique", price: 500 }],
+  },
+  {
+    id: 6,
+    name: "Coca-Cola",
+    description: "La meilleure boisson de la terre.",
+    category_id: 6,
+    image_url: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+    model_3d_url: null,
+    prices: [{ label: "Unique", price: 200 }],
+  },
+  {
+    id: 7,
+    name: "Tiramisu",
+    description: "Dessert italien classique à base de café et de mascarpone.",
+    category_id: 7,
+    image_url: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+    model_3d_url: null,
+    prices: [{ label: "Unique", price: 400 }],
+  },
+];
