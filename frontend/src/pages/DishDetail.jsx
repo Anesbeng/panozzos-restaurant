@@ -22,7 +22,7 @@ const DishDetail = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/dishes/${id}`)
+    fetch(`${API_BASE}/dishes/${id}`)
       .then((res) => res.json())
       .then((response) => {
         setDish(response.data);
@@ -33,7 +33,7 @@ const DishDetail = () => {
 
   useEffect(() => {
     if (!dish) return;
-    fetch(`${API_BASE}/api/categories`)
+    fetch(`${API_BASE}/categories`)
       .then((res) => res.json())
       .then((response) => {
         const found = response.data.find((c) => c.id === dish.category_id);

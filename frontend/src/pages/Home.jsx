@@ -18,14 +18,14 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [dishes, setDishes] = useState([]);
   useEffect(() => {
-    fetch(`${API_BASE}/api/categories`)
+    fetch(`${API_BASE}/categories`)
       .then((res) => res.json())
       .then((response) => {
         setCategories(response.data);
       })
       .catch((error) => console.error("Error fetching categories:", error));
 
-    fetch(`${API_BASE}/api/dishes`)
+    fetch(`${API_BASE}/dishes`)
       .then((res) => res.json())
       .then((response) => setDishes(response.data))
       .catch((error) => console.error("Error fetching dishes:", error));
