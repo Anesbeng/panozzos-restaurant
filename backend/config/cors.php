@@ -25,6 +25,7 @@ return [
     'allowed_origins' => [
     'http://localhost:5173',
     'http://192.168.1.7:5173',
+    'https://panozzos-restaurant.vercel.app',
 ],
 
     'allowed_origins_patterns' => [],
