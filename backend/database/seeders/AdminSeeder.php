@@ -2,20 +2,20 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 
 class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-       Admin::updateOrCreate(
-    ['email' => env('ADMIN_EMAIL')],
-    [
-        'name' => 'Admin',
-        'password' => Hash::make(env('ADMIN_PASSWORD')),
-    ]
-);
+        User::updateOrCreate(
+            ['email' => env('ADMIN_EMAIL', 'admin@panozzos.com')],
+            [
+                'name' => 'Admin',
+                'password' => Hash::make(env('ADMIN_PASSWORD')),
+            ]
+        );
     }
 }
