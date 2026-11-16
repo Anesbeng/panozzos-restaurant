@@ -1,8 +1,6 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,7 +8,7 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        User::updateOrCreate(
+        Admin::updateOrCreate(
             ['email' => env('ADMIN_EMAIL', 'admin@panozzos.com')],
             [
                 'name' => 'Admin',
