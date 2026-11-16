@@ -1,16 +1,16 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { useEffect } from "react";
+import { API_BASE } from "../../config";
 
 const CategoryEditForm = () => {
   const [name, setName] = useState("");
   const { token } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
+
   const loadcategory = () =>
-    fetch(`http://127.0.0.1:8000/api/admin/categories/${id}`, {
+    fetch(`${API_BASE}/admin/categories/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
         Accept: "application/json",
@@ -30,17 +30,15 @@ const CategoryEditForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(
-      `http://127.0.0.1:8000/api/admin/categories/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ name }),
+    const res = await fetch(`${API_BASE}/admin/categories/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
       },
-    );
+      body: JSON.stringify({ name }),
+    });
 
     if (!res.ok) {
       console.error("Update failed:", await res.text());

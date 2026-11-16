@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import AdminLayout from "../../components/AdminLayout";
+import { API_BASE } from "../../config";
 
 const CategoryForm = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const CategoryForm = () => {
 
   useEffect(() => {
     if (!isEdit) return;
-    fetch(`http://127.0.0.1:8000/api/admin/categories/${id}`, {
+    fetch(`${API_BASE}/admin/categories/${id}`, {
       headers: { Authorization: `Bearer ${token}`, Accept: "application/json" },
     })
       .then((res) => res.json())
@@ -23,13 +24,14 @@ const CategoryForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = isEdit
-      ? `http://127.0.0.1:8000/api/admin/categories/${id}`
-      : "http://127.0.0.1:8000/api/admin/categories";
+      ? `${API_BASE}/admin/categories/${id}`
+      : `${API_BASE}/admin/categories`;
 
     const res = await fetch(url, {
       method: isEdit ? "PUT" : "POST",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ name }),

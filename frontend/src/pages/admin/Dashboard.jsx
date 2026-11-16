@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import AdminLayout from "../../components/AdminLayout";
 import { Plus, Pencil, Trash2 } from "lucide-react";
+import { API_BASE } from "../../config";
 
 const Dashboard = () => {
   const [dishes, setDishes] = useState([]);
@@ -10,15 +11,16 @@ const Dashboard = () => {
   const { token } = useAuth();
 
   const loadData = () => {
-    fetch("http://127.0.0.1:8000/api/admin/dishes", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json",
+    };
+
+    fetch(`${API_BASE}/admin/dishes`, { headers })
       .then((res) => res.json())
       .then((data) => setDishes(data.data || []));
 
-    fetch("http://127.0.0.1:8000/api/admin/categories", {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch(`${API_BASE}/admin/categories`, { headers })
       .then((res) => res.json())
       .then((data) => setCategories(data.data || []));
   };
@@ -31,9 +33,12 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     if (!confirm("Supprimer ce plat ?")) return;
-    await fetch(`http://127.0.0.1:8000/api/admin/dishes/${id}`, {
+    await fetch(`${API_BASE}/admin/dishes/${id}`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
     });
     loadData();
   };

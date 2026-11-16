@@ -3,14 +3,18 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import AdminLayout from "../../components/AdminLayout";
 import { Plus, Pencil, Trash2 } from "lucide-react";
+import { API_BASE } from "../../config";
 
 const CategoriesList = () => {
   const [categories, setCategories] = useState([]);
   const { token } = useAuth();
 
   const loadCategories = () => {
-    fetch("http://127.0.0.1:8000/api/admin/categories", {
-      headers: { Authorization: `Bearer ${token}` },
+    fetch(`${API_BASE}/admin/categories`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
     })
       .then((res) => res.json())
       .then((data) => setCategories(data.data || []));
@@ -22,9 +26,12 @@ const CategoriesList = () => {
 
   const handleDelete = async (id) => {
     if (!confirm("Supprimer cette catégorie ?")) return;
-    await fetch(`http://127.0.0.1:8000/api/admin/categories/${id}`, {
+    await fetch(`${API_BASE}/admin/categories/${id}`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json",
+      },
     });
     loadCategories();
   };

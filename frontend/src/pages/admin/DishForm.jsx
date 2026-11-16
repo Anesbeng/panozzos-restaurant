@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import AdminLayout from "../../components/AdminLayout";
 import { X } from "lucide-react";
+import { API_BASE } from "../../config";
 
 const DishForm = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ const DishForm = () => {
   const [model3d, setModel3d] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/admin/categories", {
+    fetch(`${API_BASE}/admin/categories`, {
       headers: { Authorization: `Bearer ${token}`, Accept: "application/json" },
     })
       .then((res) => res.json())
@@ -30,7 +31,7 @@ const DishForm = () => {
       .catch((err) => console.error("Error fetching categories:", err));
 
     if (isEdit) {
-      fetch(`http://127.0.0.1:8000/api/admin/dishes/${id}`, {
+      fetch(`${API_BASE}/admin/dishes/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "application/json",
@@ -88,8 +89,8 @@ const DishForm = () => {
     if (isEdit) formData.append("_method", "PUT");
 
     const url = isEdit
-      ? `http://127.0.0.1:8000/api/admin/dishes/${id}`
-      : "http://127.0.0.1:8000/api/admin/dishes";
+      ? `${API_BASE}/admin/dishes/${id}`
+      : `${API_BASE}/admin/dishes`;
 
     try {
       const res = await fetch(url, {
