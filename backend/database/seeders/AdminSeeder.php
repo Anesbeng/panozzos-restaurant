@@ -10,12 +10,12 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        Admin::updateOrCreate(
-            ['email' => 'admin10@gmail.com'],
-            [
-                'name' => 'Admin',
-                'password' => Hash::make('Admin123456'),
-            ]
-        );
+       Admin::updateOrCreate(
+    ['email' => env('ADMIN_EMAIL')],
+    [
+        'name' => 'Admin',
+        'password' => Hash::make(env('ADMIN_PASSWORD')),
+    ]
+);
     }
 }
